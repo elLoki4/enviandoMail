@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulario</title>
+</head>
+<body>
+    <form action="" id="form" method="POST">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" required>
+        
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        
+        <label for="mensaje">Dejanos tu consulta:</label>
+        <textarea type="textarea" id="mensaje" name="mensaje" required></textarea>
+        
+        <input type="submit" id="button" value="Enviar">
+    </form>
+    
+<script type="text/javascript"
+src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+<script type="text/javascript">
+emailjs.init('Jk3TsBGIN21a-2rVu')
+</script>
+
+<script>
+    const btn = document.getElementById("button")
+    document.getElementById("form")
+    .addEventListener("submit", function(event){
+        event.preventDefault()
+        btn.value = "enviando..."
+        serviceId = "service_jeficnt"
+        templateId = "template_qda834k"
+        emailjs.sendForm(serviceId,templateId,this)
+        .then(()=>{
+            btn.value = "enviando email ";
+            alert("enviado")
+        }, (err)=>{
+            btn.value = ("enviado email");
+            alert(JSON.stringify(err))
+        })
+    })
+</script>
+</body>
+</html>
